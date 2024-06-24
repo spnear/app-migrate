@@ -32,6 +32,25 @@ def insert_data(table):
         else:
             return jsonify({'insert_status':'failed','description':'Body out of index'},400)
 
+@app.route('/backup/<table>',methods = ['GET'])
+def generate_backup_table(table):
+    database_loader = DatabaseInterface()
+    database_loader.generate_table_backup(table)
+    return jsonify({'connection':'success','message':f'backup generated for {table}'})
+
+
+@app.route('/backups3/<table>',methods = ['GET'])
+def generate_backup_table_s3(table):
+    database_loader = DatabaseInterface()
+    database_loader.generate_table_backup_s3(table)
+    return jsonify({'connection':'success','message':f'backup generated for {table}'})
+
+
+@app.route('/restore/<table>',methods = ['GET'])
+def restore_table(table):
+    database_loader = DatabaseInterface()
+    database_loader.restore_table_backup(table)
+    return jsonify({'connection':'success','message':f'{table} was restored'})
 
 
 @app.route('/report/2021/quarter/', methods=['GET'])

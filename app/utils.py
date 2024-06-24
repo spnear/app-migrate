@@ -4,8 +4,6 @@ import pandas as pd
 import numpy as np
 from models import TableSchema
 
-#from migratedata import migratedata
-
 
 class CommonFunctions():
     
