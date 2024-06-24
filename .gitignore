@@ -1,0 +1,10 @@
+venv/
+.venv/*
+pgadmin_data/*
+postgres_data/*
+*.env
+*__pycache__/*
+.DS_Store/*
+__pycache__/
+__pycache__/*
+.DS_Store

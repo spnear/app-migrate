@@ -1,0 +1,32 @@
+name: migration-app
+
+services:
+
+  db:
+    image: postgres:14.1-alpine
+    volumes:
+      - './postgres_data:/var/lib/postgresql/data'
+    env_file: database.env
+    restart: always
+    ports:
+      - '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4
+    volumes:
+      - './pgadmin_data:/var/lib/pgadmin'
+    env_file: database.env
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+#  api:
+#    build: .
+#    container_name: "api"
+#    volumes:
+#      - ./app:/app
+#    ports:
+#    - 8000:8000
+#    depends_on:
+#      - db
